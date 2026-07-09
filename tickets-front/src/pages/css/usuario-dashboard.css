@@ -1,0 +1,284 @@
+/* ============================================================
+   CONSOLE DASHBOARD — CLEAN ENTERPRISE (FULL WIDTH)
+   ============================================================ */
+
+.dashboard-main {
+  width: 100%;
+  min-height: 100vh;
+  background: #f8fafc;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Topbar */
+.dashboard-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 16px;
+}
+
+.dashboard-breadcrumb {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dashboard-topbar h2 {
+  margin: 4px 0 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.dashboard-topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 6px 14px;
+}
+
+.dashboard-topbar-user .avatar-corp {
+  width: 28px;
+  height: 28px;
+  background: #0f172a;
+  color: #ffffff;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.dashboard-topbar-user strong {
+  display: block;
+  font-size: 12.5px;
+  color: #334155;
+}
+
+.dashboard-topbar-user small {
+  display: block;
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* Layout Container */
+.dashboard-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* KPIs compactos */
+.dashboard-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.stat-card-corp {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.stat-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.stat-icon-wrapper.warning { background: #fffbeb; color: #b45309; }
+.stat-icon-wrapper.process { background: #eff6ff; color: #1e40af; }
+.stat-icon-wrapper.success { background: #f0fdf4; color: #166534; }
+
+.stat-data-corp span {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.stat-data-corp h2 {
+  margin: 2px 0 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Botón de Acción Principal */
+.btn-primary-corp {
+  background: #1e40af;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.1s;
+}
+
+.btn-primary-corp:hover {
+  background: #1d4ed8;
+}
+
+/* Panel de Tabla Completo (Ancho 100%) */
+.card-panel-corp {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.panel-header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.panel-header-corp h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.panel-header-corp p {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* Selector de Pestañas */
+.panel-tabs {
+  display: flex;
+  gap: 4px;
+  background: #f1f5f9;
+  padding: 3px;
+  border-radius: 4px;
+}
+
+.tab-btn {
+  border: none;
+  background: transparent;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.tab-btn.active {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Estructura de Tabla Estilo Consola */
+.corp-ticket-table-mini {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.corp-ticket-table-mini th {
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #64748b;
+  padding: 10px 16px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.corp-ticket-table-mini td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 13.5px;
+}
+
+.corp-ticket-table-mini tr:hover td {
+  background: #f8fafc;
+}
+
+.ticket-meta-title {
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.ticket-meta-sub {
+  font-size: 11.5px;
+  color: #64748b;
+  font-family: monospace;
+  margin-top: 2px;
+}
+
+/* Badges de Estado */
+.badge-state-corp {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #64748b;
+}
+.badge-state-corp.status-abierto { background: #fffbeb; color: #b45309; border-color: #fef3c7; }
+.badge-state-corp.status-proceso { background: #eff6ff; color: #1e40af; border-color: #bfdbfe; }
+.badge-state-corp.status-resuelto { background: #f0fdf4; color: #166534; border-color: #bbf7d0; }
+
+.panel-link-inline {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1e40af;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 16px;
+}
+.panel-link-inline:hover { text-decoration: underline; }
+
+/* Responsive */
+@media (max-width: 950px) {
+  .dashboard-stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 550px) {
+  .dashboard-stats-grid { grid-template-columns: 1fr; }
+  .panel-header-wrapper { flex-direction: column; align-items: flex-start; }
+}

@@ -1,0 +1,324 @@
+/* ============================================================
+   LOGIN — Sistema de Tickets · Cibertec
+   Split-screen: panel de contexto (izq) + formulario (der)
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap");
+
+:root {
+  --ink-900: #0c1220;
+  --ink-800: #141c2e;
+  --ink-700: #1d283e;
+  --line-soft: rgba(255, 255, 255, 0.08);
+
+  --surface: #ffffff;
+  --surface-muted: #f5f6fa;
+  --border: #e4e6ef;
+
+  --text-900: #10121a;
+  --text-500: #6b7080;
+  --text-inverse: #eef0f7;
+  --text-inverse-muted: #8a93ab;
+
+  --accent: #4753d8;
+  --accent-hover: #3a45c4;
+  --accent-soft: rgba(71, 83, 216, 0.12);
+
+  --status-open: #4753d8;
+  --status-progress: #d9a441;
+  --status-resolved: #2fae76;
+
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.login-shell {
+  min-height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  font-family: var(--font-body);
+  background: var(--surface);
+}
+
+/* ---------------- Panel izquierdo (contexto) ---------------- */
+
+.login-aside {
+  position: relative;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(71, 83, 216, 0.35), transparent 55%),
+    linear-gradient(165deg, var(--ink-800) 0%, var(--ink-900) 65%);
+  color: var(--text-inverse);
+  padding: 56px 56px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.login-aside::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--line-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(ellipse 70% 60% at 30% 20%, black, transparent);
+  opacity: 0.5;
+}
+
+.aside-top,
+.aside-bottom {
+  position: relative;
+  z-index: 1;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 40px;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brand-org {
+  font-family: var(--font-mono);
+  font-size: 12px; /* Agrandado un poco */
+  font-weight: 500;
+  color: #b7bcf5;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-size: 15px; /* Agrandado un poco */
+  font-weight: 600;
+  color: var(--text-inverse);
+  letter-spacing: 0.01em;
+}
+
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text-inverse);
+  flex-shrink: 0;
+}
+
+.aside-top h1 {
+  font-family: var(--font-display);
+  font-size: 36px; /* De 34px a 36px */
+  line-height: 1.25;
+  font-weight: 600;
+  margin: 0 0 16px;
+  max-width: 440px;
+  letter-spacing: -0.01em;
+}
+
+.aside-top p {
+  font-size: 16px; /* De 15px a 16px */
+  line-height: 1.6;
+  color: var(--text-inverse-muted);
+  max-width: 400px;
+  margin: 0 0 40px;
+}
+
+.aside-bottom {
+  display: flex;
+  gap: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.aside-stat b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 22px; /* De 20px a 22px */
+  font-weight: 600;
+  color: var(--text-inverse);
+}
+
+.aside-stat span {
+  font-size: 13px; /* De 12px a 13px */
+  color: var(--text-inverse-muted);
+}
+
+/* ---------------- Panel derecho (formulario) ---------------- */
+
+.login-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: var(--surface);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px; /* Ampliado un poco para dar margen a letras más grandes */
+  display: flex;
+  flex-direction: column;
+}
+
+.login-card-header {
+  margin-bottom: 32px;
+}
+
+.login-card-header h2 {
+  font-family: var(--font-display);
+  font-size: 26px; /* De 24px a 26px */
+  font-weight: 600;
+  color: var(--text-900);
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+
+.login-card-header p {
+  font-size: 15px; /* De 14px a 15px */
+  color: var(--text-500);
+  margin: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.field-label {
+  font-size: 13.5px; /* De 12.5px a 13.5px */
+  font-weight: 600;
+  color: var(--text-900);
+}
+
+.field input {
+  width: 100%;
+  padding: 13px 15px;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-900);
+  font-family: var(--font-body);
+  font-size: 15px; /* De 14.5px a 15px */
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.field input::placeholder {
+  color: #a6abb8;
+}
+
+.field input:hover {
+  border-color: #c7cbdb;
+}
+
+.field input:focus {
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.login-card button[type="submit"] {
+  margin-top: 10px;
+  padding: 13.5px 16px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 15px; /* De 14.5px a 15px */
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.login-card button[type="submit"]:hover {
+  background: var(--accent-hover);
+}
+
+.login-card button[type="submit"]:active {
+  transform: scale(0.985);
+}
+
+.login-card button[type="submit"]:focus-visible,
+.field input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.login-footnote {
+  margin-top: 24px;
+  font-size: 13.5px; /* De 12.5px a 13.5px */
+  color: var(--text-500);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.login-credit {
+  margin-top: 32px;
+  font-size: 12px; /* De 11.5px a 12px */
+  color: #a2a6b0; /* Ajustado el color para mejorar legibilidad */
+  text-align: center;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+.login-credit span {
+  font-weight: 600;
+  color: var(--text-700);
+}
+
+/* ---------------- Responsive (Mobile & Tablet) ---------------- */
+
+@media (max-width: 900px) {
+  .login-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .login-aside {
+    padding: 40px 32px;
+  }
+
+  .aside-top h1 {
+    font-size: 28px;
+  }
+
+  .aside-bottom {
+    padding-top: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-main {
+    padding: 32px 24px;
+  }
+
+  .login-card-header h2 {
+    font-size: 23px;
+  }
+}
