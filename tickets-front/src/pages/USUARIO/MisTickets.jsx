@@ -70,6 +70,7 @@ export default function MisTickets() {
     if (adjunto.url) return adjunto.url;
     if (adjunto.ruta) {
       const rutaNormalizada = String(adjunto.ruta).replaceAll("\\", "/");
+      if (rutaNormalizada.startsWith("http")) return rutaNormalizada;
       return `${api.defaults.baseURL || ""}/${rutaNormalizada}`;
     }
 
