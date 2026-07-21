@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
   CalendarClock,
   Clock,
-  FolderTree,
   Gauge,
   Save,
   Ticket,
@@ -25,41 +24,21 @@ export default function CrearTicket() {
       ? JSON.parse(usuarioStorage)
       : null;
 
-  const [categorias, setCategorias] = useState([]);
   const [guardando, setGuardando] = useState(false);
 
   const [form, setForm] = useState({
     titulo: "",
     descripcion: "",
     prioridad: "MEDIA",
-    categoriaId: "",
     fechaLimite: "",
     tiempoEstimadoHoras: "",
   });
-
-  useEffect(() => {
-    cargarCategorias();
-  }, []);
-
-  const cargarCategorias = async () => {
-    try {
-      const res = await api.get("/api/categorias");
-      setCategorias(res.data || []);
-    } catch (error) {
-      console.error("Error cargando categorías", error);
-    }
-  };
 
   const handleChange = (campo, valor) => {
     setForm({
       ...form,
       [campo]: valor,
     });
-  };
-
-  const obtenerCategoriaNombre = () => {
-    const categoria = categorias.find((item) => item.id === form.categoriaId);
-    return categoria?.nombre || "Sin categoría";
   };
 
   const guardar = async (e) => {
@@ -72,11 +51,6 @@ export default function CrearTicket() {
 
     if (!form.descripcion.trim()) {
       alert("Ingrese la descripción");
-      return;
-    }
-
-    if (!form.categoriaId) {
-      alert("Seleccione una categoría");
       return;
     }
 
@@ -94,7 +68,6 @@ export default function CrearTicket() {
         titulo: form.titulo,
         descripcion: form.descripcion,
         prioridad: form.prioridad,
-        categoriaId: form.categoriaId,
         fechaLimite: form.fechaLimite ? `${form.fechaLimite}T23:59:00` : null,
         tiempoEstimadoHoras: form.tiempoEstimadoHoras
           ? Number(form.tiempoEstimadoHoras)
@@ -200,24 +173,6 @@ export default function CrearTicket() {
                 </div>
 
                 <div className="crear-admin-form-group">
-                  <label>Categoría</label>
-                  <select
-                    value={form.categoriaId}
-                    onChange={(e) => handleChange("categoriaId", e.target.value)}
-                  >
-                    <option value="">Seleccione una categoría</option>
-
-                    {categorias.map((categoria) => (
-                      <option key={categoria.id} value={categoria.id}>
-                        {categoria.nombre}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div className="crear-admin-row">
-                <div className="crear-admin-form-group">
                   <label>Fecha límite</label>
                   <input
                     type="date"
@@ -225,7 +180,9 @@ export default function CrearTicket() {
                     onChange={(e) => handleChange("fechaLimite", e.target.value)}
                   />
                 </div>
+              </div>
 
+              <div className="crear-admin-row">
                 <div className="crear-admin-form-group">
                   <label>Tiempo estimado (horas)</label>
                   <input
@@ -274,14 +231,6 @@ export default function CrearTicket() {
                     <span>Código</span>
                     <strong>Se generará automáticamente</strong>
                   </div>
-                </div>
-
-                <div className="crear-admin-summary-item">
-                  <div>
-                    <FolderTree size={18} />
-                    <span>Categoría</span>
-                  </div>
-                  <strong>{obtenerCategoriaNombre()}</strong>
                 </div>
 
                 <div className="crear-admin-summary-item">

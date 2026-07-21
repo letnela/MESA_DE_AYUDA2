@@ -31,7 +31,6 @@ export default function Tickets() {
   const usuarioAccionId = localStorage.getItem("usuarioId") || usuario?.id;
 
   const [tickets, setTickets] = useState([]);
-  const [categorias, setCategorias] = useState([]);
   const [usuarios, setUsuarios] = useState([]);
   const [busqueda, setBusqueda] = useState("");
   const [cargando, setCargando] = useState(false);
@@ -44,7 +43,6 @@ export default function Tickets() {
     titulo: "",
     descripcion: "",
     prioridad: "MEDIA",
-    categoriaId: "",
     fechaLimite: "",
     tiempoEstimadoHoras: "",
   });
@@ -53,14 +51,12 @@ export default function Tickets() {
     try {
       setCargando(true);
 
-      const [ticketsRes, categoriasRes, usuariosRes] = await Promise.all([
+      const [ticketsRes, usuariosRes] = await Promise.all([
         api.get("/api/tickets"),
-        api.get("/api/categorias"),
         api.get("/usuarios"),
       ]);
 
       setTickets(Array.isArray(ticketsRes.data) ? ticketsRes.data : []);
-      setCategorias(Array.isArray(categoriasRes.data) ? categoriasRes.data : []);
       setUsuarios(Array.isArray(usuariosRes.data) ? usuariosRes.data : []);
     } catch (error) {
       console.error("Error cargando datos", error);
@@ -105,7 +101,6 @@ export default function Tickets() {
       titulo: "",
       descripcion: "",
       prioridad: "MEDIA",
-      categoriaId: "",
       fechaLimite: "",
       tiempoEstimadoHoras: "",
     });
@@ -126,7 +121,6 @@ export default function Tickets() {
       titulo: ticket.titulo || "",
       descripcion: ticket.descripcion || "",
       prioridad: ticket.prioridad || "MEDIA",
-      categoriaId: ticket.categoria?.id || "",
       fechaLimite: ticket.fechaLimite ? ticket.fechaLimite.substring(0, 10) : "",
       tiempoEstimadoHoras: ticket.tiempoEstimadoHoras || "",
     });
@@ -157,16 +151,10 @@ export default function Tickets() {
       return;
     }
 
-    if (!form.categoriaId) {
-      alert("Seleccione una categoría");
-      return;
-    }
-
     const payload = {
       titulo: form.titulo.trim(),
       descripcion: form.descripcion.trim(),
       prioridad: form.prioridad,
-      categoriaId: form.categoriaId,
       fechaLimite: form.fechaLimite ? `${form.fechaLimite}T23:59:00` : null,
       tiempoEstimadoHoras: form.tiempoEstimadoHoras
         ? Number(form.tiempoEstimadoHoras)
@@ -1086,23 +1074,6 @@ export default function Tickets() {
                     <option value="MEDIA">MEDIA</option>
                     <option value="ALTA">ALTA</option>
                     <option value="CRITICA">CRÍTICA</option>
-                  </select>
-                </div>
-
-                <div className="ticket-form-group">
-                  <label>Categoría</label>
-                  <select
-                    value={form.categoriaId}
-                    onChange={(e) =>
-                      setForm({ ...form, categoriaId: e.target.value })
-                    }
-                  >
-                    <option value="">Seleccione</option>
-                    {categorias.map((categoria) => (
-                      <option key={categoria.id} value={categoria.id}>
-                        {categoria.nombre}
-                      </option>
-                    ))}
                   </select>
                 </div>
 

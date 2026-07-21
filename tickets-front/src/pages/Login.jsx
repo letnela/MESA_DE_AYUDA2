@@ -108,18 +108,14 @@ export default function Login() {
             </div>
           </div>
 
-          <h1>Gestión de incidencias, sin fricción.</h1>
+          <h1>Todo tu soporte técnico, en un solo lugar.</h1>
           <p>
-            Centraliza, asigna y da seguimiento a las incidencias
-            técnicas de la comunidad universitaria en un solo lugar.
+            Reporta incidencias, dale seguimiento y mantente informado
+            durante todo el proceso.
           </p>
         </div>
 
         <div className="aside-bottom">
-          <div className="aside-stat">
-            <b>98%</b>
-            <span>Tickets resueltos a tiempo</span>
-          </div>
           <div className="aside-stat">
             <b>24/7</b>
             <span>Soporte técnico</span>
